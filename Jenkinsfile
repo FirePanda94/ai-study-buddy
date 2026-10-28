@@ -67,15 +67,13 @@ pipeline {
                 '''
             }
         }
-        stage('Apply Kubernetes & Sync App with ArgoCD') {
+        stage('Sync App with ArgoCD') {
             steps {
-                script {
-                    kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://127.0.0.1:32771') {
-                        sh '''
-                        argocd login 172.29.40.239:31704 --username admin --password $(kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) --insecure
-                        argocd app sync ai-study-buddy
-                        '''
-                    }
+                withCredentials([string(credentialsId: 'argocd-password', variable: 'ARGOCD_PASS')]) {
+                sh '''
+                argocd login 172.29.40.239:31704 --username admin --password "$ARGOCD_PASS" --insecure
+                argocd app sync ai-study-buddy
+                '''
                 }
             }
         }
