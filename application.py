@@ -8,7 +8,7 @@ load_dotenv()
 
 
 def main():
-    st.set_page_config(page_title="studdy Buddy AI", page_icon="🎧🎧")
+    st.set_page_config(page_title="Study Buddy AI", page_icon="🎧🎧")
 
     if "quiz_manager" not in st.session_state:
         st.session_state.quiz_manager = QuizManager()
@@ -22,7 +22,7 @@ def main():
     if "rerun_trigger" not in st.session_state:
         st.session_state.rerun_trigger = False
 
-    st.title("Study Buddy AI")
+    st.title("AI Study Buddy")
 
     st.sidebar.header("Quiz Settings")
 
@@ -31,7 +31,7 @@ def main():
     )
 
     topic = st.sidebar.text_input(
-        "Ennter Topic", placeholder="Indian History, geography"
+        "Enter Topic", placeholder="Indian History, geography"
     )
 
     difficulty = st.sidebar.selectbox(
