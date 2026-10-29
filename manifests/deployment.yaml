@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: llmops-app
-        image: dockerpanda94/ai-study-buddy:v8
+        image: dockerpanda94/ai-study-buddy:v9
         ports:
         - containerPort: 8501
         env:
